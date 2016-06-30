@@ -133,7 +133,10 @@ class SVGElement extends BaseElement {
 	  * [pretty]print [this] Element
 	  */
 	public function print(pretty : Bool = false):String {
-		var s = '<?xml version="1.0"?>';
+		var s = '<?xml version="1.0" encoding="utf-8"?>';
+		if ( pretty )
+			s += '\n';
+		s += '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
 		if ( pretty )
 			s += '\n';
 		s += toXml().print( pretty );

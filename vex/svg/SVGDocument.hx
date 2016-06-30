@@ -22,6 +22,9 @@ class SVGDocument extends vex.core.BaseDocument {
 		super();
 		
 		e = createElement( 'svg' );
+		attr('xmlns', "http://www.w3.org/2000/svg");
+		attr('xmlns:xlink', "http://www.w3.org/1999/xlink");
+		attr('version', '1.1');
 	}
 
 /* === Computed Instance Fields === */
