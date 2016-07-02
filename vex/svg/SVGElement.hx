@@ -104,6 +104,25 @@ class SVGElement extends BaseElement {
 	}
 
 	/**
+	  * Add an Event listener to [this]
+	  */
+	public function addEventListener<T>(name:String, handler:T->Void, ?transformer:Dynamic->T):Void {
+		e.addEventListener(name, function(event : Dynamic) {
+			if (transformer != null) {
+				event = transformer( event );
+			}
+			handler(untyped event);
+		});
+	}
+
+	/**
+	  * Remove an Event listener from [this]
+	  */
+	public function removeEventListener<T>(name:String, handler:T->Void):Void {
+		e.removeEventListener(name, handler);
+	}
+
+	/**
 	  * create and return a clone of [this] Element
 	  */
 	public function clone():SVGElement {
