@@ -1,6 +1,11 @@
 package vex.svg;
 
 import tannus.geom.*;
+import tannus.io.*;
+
+#if gryffin
+import gryffin.display.Image;
+#end
 
 import vex.svg.SVGElement.createElement;
 
@@ -27,9 +32,27 @@ class SVGDocument extends vex.core.BaseDocument {
 		attr('version', '1.1');
 	}
 
+/* === Instance Methods === */
+
+	/**
+	  * Convert [this] into a Blob
+	  */
+	public function toBlob():Blob {
+		return new Blob('image.svg', 'image/svg+xml', ByteArray.ofString(print( true )));
+	}
+
+#if gryffin
+	/**
+	  * Convert [this] into a gryffin.display.Image
+	  */
+	public function toImage():Image {
+		var blob = toBlob();
+		return Image.load(blob.toObjectURL());
+	}
+#end
+
 /* === Computed Instance Fields === */
 
-	/* get x */
 	override private function get_x():Float return (hasAttribute('x') ? parseFloat(getAttribute('x')) : 0);
 	override private function set_x(v : Float):Float return parseFloat(setAttribute('x', v));
 
