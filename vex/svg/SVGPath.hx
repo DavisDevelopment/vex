@@ -5,7 +5,6 @@ import tannus.geom.*;
 import vex.svg.SVGElement.createElement;
 import vex.svg.path.Command;
 import vex.svg.path.*;
-
 import Std.*;
 import Math.*;
 import tannus.math.TMath.*;
@@ -45,6 +44,13 @@ class SVGPath extends SVGElement {
 		return c;
 	}
 
+	/**
+	  * Create a tannus.geom.Path from [this]
+	  */
+	public function toGeomPath():Array<Path> {
+		return [];
+	}
+
 /* === Computed Instance Fields === */
 
 	/* the raw value of the 'd' attribute */
@@ -60,5 +66,16 @@ class SVGPath extends SVGElement {
 	private function set_commands(list : Array<Command>):Array<Command> {
 		d = Printer.print( list );
 		return list.copy();
+	}
+
+/* === Static Methods === */
+
+	/**
+	  * Create and return an SVGPath from a command-string
+	  */
+	public static function fromCommandString(s : String):SVGPath {
+		var path = new SVGPath();
+		path.d = s;
+		return path;
 	}
 }
